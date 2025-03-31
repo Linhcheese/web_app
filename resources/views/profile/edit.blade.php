@@ -69,11 +69,21 @@
               <path d="M5.84994 16.0998C5.65994 16.0998 5.46994 16.0298 5.31994 15.8798L1.96994 12.5298C1.67994 12.2398 1.67994 11.7598 1.96994 11.4698L5.31994 8.11984C5.60994 7.82984 6.08994 7.82984 6.37994 8.11984C6.66994 8.40984 6.66994 8.88984 6.37994 9.17984L3.55994 11.9998L6.37994 14.8198C6.66994 15.1098 6.66994 15.5898 6.37994 15.8798C6.23994 16.0298 6.03994 16.0998 5.84994 16.0998Z" fill="#FF4949"/>
             </svg>
           </div>
-          <form method="POST" action="{{ route('logout') }}">
+          <form method="POST" action="{{ route('logout') }}" id="form-logout">
             @csrf
-            <button type="submit" class="text-logout">Đăng xuất</button>
+            <button type="submit" class="text-logout" id="btn-logout">Đăng xuất</button>
           </form>
         </div>
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById('btn-logout').addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('checkIsAlertReminder');
+        localStorage.removeItem('alertDay');
+        document.getElementById('form-logout').submit();
+      })
+    });
+  </script>
 @endsection

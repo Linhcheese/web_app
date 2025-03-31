@@ -137,7 +137,26 @@
             Số dư: {{ number_format((($data['income'] ?? 0) - ($data['expense'] ?? 0) - ($data['goal'] ?? 0) - ($data['charity'] ?? 0)) ?? 0)}} VNĐ
         </p>
         <div>
-        <canvas style="height: 300px; width: 300px ; margin-left: auto; margin-right: auto;" id="myChart"></canvas>
+        @php
+            $remain = number_format((($data['income'] ?? 0) - ($data['expense'] ?? 0) - ($data['goal'] ?? 0) - ($data['charity'] ?? 0)) ?? 0);
+        @endphp
+        @if ($remain <= 0)
+            <p style="color: white;font-size: 15px; text-align: center;font-weight: bold;">
+               <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt=""> Bạn đã tiêu hết tiền rồi.
+               @if ($remain < 0)
+                Bạn đang nợ {{ $remain }} VNĐ.
+               @endif 
+            </p>
+        @elseif ( $remain <= ($data['income'] ?? 0) * 0.5)
+            <p style="color: white;font-size: 15px;font-weight: bold;">
+               <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt=""> Bạn đã tiêu gần hết tiền rồi. Hạn chế chi tiêu nhé.
+            </p>
+        @else
+            <p style="color: white;font-size: 15px;font-weight: bold;">
+               <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt=""> Bạn đã có thể chi tiêu cho những thứ cần thiết thoải mái.
+            </p>
+        @endif
+        <canvas style="height: 300px; width: 300px ; margin-left: auto; margin-right: auto;margin-top: 15px;" id="myChart"></canvas>
     </div>
     </div>
 </div>
@@ -146,11 +165,12 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let checkIsAlertReminder = localStorage.getItem("checkIsAlertReminder");
-            const isHasExpenseToday = '<?php echo $hasExpenseForToday ?>';
+            let isHasExpenseToday = '<?php echo $hasExpenseForToday ?>';
             if (localStorage.getItem('alertDay') !== '<?php echo $currentDate ?>') {
                 localStorage.removeItem('checkIsAlertReminder');
                 localStorage.removeItem('alertDay');
                 checkIsAlertReminder = 0;
+                isHasExpenseToday = '';
             }
             if (checkIsAlertReminder != 1 && isHasExpenseToday == '') {
                 document.getElementById('expenseReminderModal').classList.remove('hidden');

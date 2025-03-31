@@ -85,3 +85,7 @@
     border: 1.5px solid #EF9651 !important;
     background: #FBFFE4 !important;
   }
+
+  [type=radio]:checked {
+    background: #EC5228 !important;
+  }

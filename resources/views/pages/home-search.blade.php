@@ -80,7 +80,7 @@ $previousDate = null;
     @endphp
 
     @if ($currentDate !== $previousDate)
-    <h2 class="text-white font-bold pl-3">{{ $currentDate }}</h2>
+    <h2 class="font-bold pl-3" style="color: white;">{{ $currentDate }}</h2>
     @php $previousDate = $currentDate; @endphp
     @endif
 

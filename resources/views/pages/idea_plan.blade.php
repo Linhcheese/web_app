@@ -19,42 +19,45 @@
         <span class="add-expenses-title">{{ $titlePage }}</span>
         <span></span>
     </div>
-    <h2 style="color: white; text-align: center;font-size: 18px; margin-top: 10px;font-style:italic;">{{ $typeName }}</h2>
-
-    <div style="width: fit-content;margin-left: auto;margin-right: auto;padding: 15px;border-radius: 8px;">
-        <ul style="color: white;">
-            <li>Nhu cầu cơ bản: {{ number_format($planData['nhu_cau_co_ban'] ?? 0) }} VND</li>
-            <li>Tiết kiệm & Đầu tư: {{ number_format($planData['tiet_kiem'] ?? 0) }} VND</li>
-            <li>Giải trí & Hưởng thụ: {{ number_format($planData['giai_tri'] ?? 0) }} VND</li>
-            <li>Khác: {{ number_format($planData['khac'] ?? 0) }} VND</li>
-            <li>Phù hợp cho: {{ $planData['note'] }} </li>
-            <ul style="list-style: circle;">✅ Ưu điểm
-                @foreach ($planData['advantage'] as $item)
-                    <li style="margin-left: auto;margin-right: auto;width: 80vw;">{{ $item }}</li>
+    <div style="overflow: auto;height: 85vh; margin-bottom: 10px;">
+        <h2 style="color: white; text-align: center;font-size: 18px;font-style:italic;">
+            Cách chi tiêu hiện tại của bạn....
+        </h2>
+        <h2 style="color: white; font-size: 14px; margin-top: 10px;padding: 10px;padding-top: 5px; padding-bottom: 5px;">
+            <p style="font-weight: bold;">
+                @foreach ($evaluateNote as $note)
+                    - {{$note}} <br>
                 @endforeach
-            </ul>
-            <ul style="list-style: circle;">❌ Nhược điểm
-                @foreach ($planData['disadvantage'] as $item)
-                    <li style="margin-left: auto;margin-right: auto;width: 80vw;">{{ $item }}</li>
+            </p>
+        </h2>
+        <div style="width: fit-content;color: white;font-size:14px;text-align: center;margin-left: auto;margin-right: auto;padding: 10px;border-radius: 8px;padding-bottom: 0px;padding-top:0px;">
+            <p style="color: orange;font-weight: bold">
+                @foreach ($typeNote as $note)
+                    {{$note}} <br>
                 @endforeach
+            </p>
+            <label style="font-size: 20px;">{{ $typeName }}</label>
+        </div>
+        <div style="width: fit-content;margin-left: auto;margin-right: auto;padding: 10px;border-radius: 8px;font-size: 14px;">
+            <ul style="color: white;">
+                <li>Nhu cầu cơ bản: {{ number_format($planData['nhu_cau_co_ban'] ?? 0) }} VND</li>
+                <li>Tiết kiệm & Đầu tư: {{ number_format($planData['tiet_kiem'] ?? 0) }} VND</li>
+                <li>Giải trí & Hưởng thụ: {{ number_format($planData['giai_tri'] ?? 0) }} VND</li>
+                <li>Khác: {{ number_format($planData['khac'] ?? 0) }} VND</li>
+                <li>Phù hợp cho: {{ $planData['note'] }} </li>
+                <ul style="list-style: circle;">✅ Ưu điểm
+                    @foreach ($planData['advantage'] as $item)
+                        <li style="margin-left: auto;margin-right: auto;width: 80vw;">{{ $item }}</li>
+                    @endforeach
+                </ul>
+                <ul style="list-style: circle;">❌ Nhược điểm
+                    @foreach ($planData['disadvantage'] as $item)
+                        <li style="margin-left: auto;margin-right: auto;width: 80vw;">{{ $item }}</li>
+                    @endforeach
+                </ul>
             </ul>
-        </ul>
+        </div>
     </div>
 </div>
 
 @endsection
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const chargeInput = document.getElementById('charge');
-    const chargeHidden = document.getElementById('charge-hidden');
-
-    chargeInput.addEventListener('input', function (e) {
-        charge = this.value;
-        let rawValue = this.value.replace(/\D/g, ''); // Loại bỏ tất cả ký tự không phải số
-        let formattedValue = new Intl.NumberFormat('en-US').format(rawValue); // Định dạng kiểu 1.000.000
-
-        this.value = formattedValue; // Hiển thị số có dấu chấm
-        chargeHidden.value = rawValue; // Lưu giá trị không có dấu chấm vào input ẩn
-    });
-});
-</script>
