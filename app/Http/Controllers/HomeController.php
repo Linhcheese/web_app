@@ -38,12 +38,7 @@ class HomeController extends Controller
         $today = Carbon::today();
         $user = Auth::user();
 
-        $hasExpenseForToday = false;
-
-        // Chỉ kiểm tra sau 8 giờ tối
-        if ($now->hour >= 20) {
-            $hasExpenseForToday = $user->expenses()->whereDate('created_at', $today)->exists();
-        }
+        $hasExpenseForToday = $user->expenses()->whereDate('created_at', $today)->exists();
 
         $tabActive = $request->get('tab_active') ? $request->get('tab_active') : 'statistic';
         $extendClass = 'disable-scroll';

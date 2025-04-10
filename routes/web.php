@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/idea', [HomeController::class, 'idea'])->name('idea');
     Route::post('/idea-plan', [HomeController::class, 'ideaPlan'])->name('idea_plan');
     Route::post('/money-plan', [HomeController::class, 'moneyPlan'])->name('money_plan');
+    
     Route::prefix('/master-category')->group(function() {
         Route::prefix('/income')->group(function() {
             Route::get('/', [MasterIncomeController::class, 'index'])->name('mincome.index');
