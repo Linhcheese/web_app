@@ -315,8 +315,8 @@ class HomeController extends Controller
                 $typeName = 'Tiết kiệm cho tương lai';
                 $planData = [
                     'nhu_cau_co_ban' => $charge * 0.5,
-                    'giai_tri' => $charge * 0.4,
-                    'tiet_kiem' => $charge * 0.05,
+                    'giai_tri' => $charge * 0.05,
+                    'tiet_kiem' => $charge * 0.4,
                     'khac' => $charge * 0.05,
                     'note'  => 'Người muốn tối ưu tài chính, nhanh chóng đạt được mục tiêu tiết kiệm lớn hoặc độc lập tài chính sớm.',
                     'advantage' => [
