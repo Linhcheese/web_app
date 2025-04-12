@@ -138,8 +138,7 @@
         </p>
         <div>
         @php
-            $remain = number_format((($data['income'] ?? 0) - ($data['expense'] ?? 0) - ($data['goal'] ?? 0) - ($data['charity'] ?? 0)) ?? 0);
-        @endphp
+            $remain = (($data['income'] ?? 0) - ($data['expense'] ?? 0) - ($data['goal'] ?? 0) - ($data['charity'] ?? 0)) ?? 0;        @endphp
         @if ($remain <= 0)
             <p style="color: white;font-size: 15px; text-align: center;font-weight: bold;">
                <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt=""> Bạn đã tiêu hết tiền rồi.

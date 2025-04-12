@@ -223,11 +223,11 @@ class HomeController extends Controller
         }
 
         if ($scoreC > $scoreA && $scoreC > $scoreB && $scoreC > $scoreD) {
-            return 1;
-        } elseif ($scoreA > $scoreC && $scoreA > $scoreB && $scoreA > $scoreD) {
-            return 2;
-        } elseif ($scoreB > $scoreC && $scoreB > $scoreA && $scoreB > $scoreD) {
             return 3;
+        } elseif ($scoreA > $scoreC && $scoreA > $scoreB && $scoreA > $scoreD) {
+            return 1;
+        } elseif ($scoreB > $scoreC && $scoreB > $scoreA && $scoreB > $scoreD) {
+            return 2;
         } else {
             return 4;
         }
