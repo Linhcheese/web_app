@@ -257,7 +257,7 @@ class TransactionController extends Controller
 
     public function addGoalTransaction($id)
     {
-        $goal = Goal::find($id);
+        $goal = Goal::with('goalTransactions')->where('id', $id)->first();
         return view('pages.goal.add-goal-transaction', compact('goal'));
     }
 

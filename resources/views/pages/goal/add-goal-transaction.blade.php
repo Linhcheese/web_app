@@ -13,10 +13,17 @@
     <span></span>
 </div>
 <form action="{{route('transaction.goal',['id'=>$goal['id']])}}" method="post" class="p-3">
+    <span class="text-white" style="color: white !important;">Tên: {{$goal['name'] }}</span>
+    <br>
+    <span class="text-white" style="color: white !important;">Thời hạn: {{$goal['due_date'] }}</span>
+    <br>
+    <span class="dollar text-white" style="color: white !important;">
+        Bạn đã hoàn thành: {{ number_format($goal->goalTransactions->sum('charge')) }} / {{ number_format($goal['charge']) }}
+    </span>
     @csrf
     <div class="add-expenses">
         <div class="add-expenses-sub">
-                <label for="charge">Số tiền chi tiêu</label>
+                <label for="charge">Số tiền bạn tiết kiệm</label>
                 <input type="text" id="charge" class="input-expenses" placeholder="Nhập số tiền" required>
                 <input type="hidden" name="charge" id="charge-hidden">
         </div>
@@ -24,7 +31,7 @@
 
     <!-- Submit Button -->
     <div class="add-expenses-sub text-center mt-4">
-        <button type="submit" class="button-add-expenses">Thêm</button>
+        <button type="submit" class="button-add-expenses">Tiết kiệm</button>
     </div>
 </form>
 @endsection

@@ -23,7 +23,7 @@
 
             <!--Input-->
             <div class="add-expenses-sub">
-                <label for="charge">Số tiền chi tiêu</label>
+                <label for="charge">Tiền đóng góp của bạn</label>
                 <input type="text" id="charge" class="input-expenses" placeholder="Nhập số tiền ủng hộ" required>
                 <input type="hidden" name="charge" id="charge-hidden">
             </div>

@@ -147,13 +147,13 @@
                 Bạn đang nợ {{ $remain }} VNĐ.
                @endif 
             </p>
-        @elseif ( $remain <= ($data['income'] ?? 0) * 0.5)
+        @elseif ( $remain <= ($data['income'] ?? 0) * 0.3)
             <p style="color: white;font-size: 15px;font-weight: bold;">
                <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt=""> Bạn đã tiêu gần hết tiền rồi. Hạn chế chi tiêu nhé.
             </p>
         @else
             <p style="color: white;font-size: 15px;font-weight: bold;">
-               <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt=""> Bạn đã có thể chi tiêu cho những thứ cần thiết thoải mái.
+               <img style="display: inline;" src="{{ asset('svg/warning-icon.svg') }}" alt="">Bạn chi tiêu thoải mái, nhưng nhớ hãy tiết kiệm!!!
             </p>
         @endif
         <canvas style="height: 300px; width: 300px ; margin-left: auto; margin-right: auto;margin-top: 15px;" id="myChart"></canvas>
