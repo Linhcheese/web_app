@@ -19,6 +19,9 @@
 <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class="input-login">
+        @if($errors->any())
+            <p class="mt-2" style="font-weight: bold;color: red;font-size: 15px;">{{ $errors->first() }}</p>
+        @endif
         <span class="login-1 txt-white">Email</span>
         <input id="email" type="email" name="email" value="{{ old('email') }}" autofocus autocomplete="username"
             class="block mt-1 w-full border-gray-300 rounded-2xl shadow-sm">
@@ -39,9 +42,6 @@
                 </svg>
             </span>
         </div>
-        @if($errors->any())
-            <p class="mt-2" style="font-weight: bold;color: red;font-size: 15px;">{{ $errors->first() }}</p>
-        @endif
     </div>
     <div class="flex-row-c">
         <a href="{{ route('password.request') }}" class="forgot-password">Quên mật khẩu ?</a>
