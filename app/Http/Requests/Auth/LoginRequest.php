@@ -42,7 +42,15 @@ class LoginRequest extends FormRequest
         $messageList = [];
         foreach ($keys as $index => $listRules) {
             foreach ($listRules as $rule) {
-                $messageList[$index.'.'.$rule] = $errorString;
+                if ($rule == 'required' || $rule == 'email' || $rule == 'string') {
+                    if ($index == 'email') {
+                        $messageList[$index.'.'.$rule] = 'Email không hợp lệ';
+                    } else {
+                        $messageList[$index.'.'.$rule] = 'Mật khẩu không hợp lệ';
+                    }
+                } else {
+                    $messageList[$index.'.'.$rule] = $errorString;
+                }
             }
         }
         return $messageList;
